@@ -2,7 +2,15 @@
 
 **Description**
 
+Content management system
+Command line application 
+
 **Installation**
+
+**Technologies** 
+
+node, Inquirer, MYSQL
+
 
 **Links**
 
