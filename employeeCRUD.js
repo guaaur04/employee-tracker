@@ -1,15 +1,53 @@
-//Port
+const mysql = require("mysql");
 
-//Username
+var connection = mysql.createConnection({
+    host: "localhost",
 
-//Password
+    //Port
+
+    port: 3306,
+
+    //Username
+    user: "root",
+
+    //Password
+    password: "",
+    database: "employeesDB"
+
+});
 
 
 //Connection.connect function
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("connected as id " + connection.threadId + "\n");
+    createProduct();
+});
 
 //Function create/add Employee 
 
-//Log the query being run 
+function createEmployee() {
+    console.log("Inserting a new employee...\n");
+    var query = connection.query(
+        "INSERT INTO products SET ?",
+        {
+            flavor: "Rocky Road",
+            price: 3.0,
+            quantity: 50
+        },
+        function (err, res) {
+            if (err) throw err;
+            console.log(res.affectedRows + " product inserted!\n");
+            // Call updateProduct AFTER the INSERT completes
+            updateEmployee();
+        }
+    );
+
+
+    //Log the query being run 
+
+    console.log(query.sql);
+}
 
 //Function to view departmnet, roles, employees
 
