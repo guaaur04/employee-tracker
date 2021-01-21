@@ -1,8 +1,6 @@
-DROP DATABASE IF EXISTS employee_DB;
+CREATE DATABASE department_db;
 
-CREATE DATABASE department_DB;
-
-USE department_DB;
+USE department_db;
 
 CREATE TABLE department(
     id INT NOT NULL AUTO_INCREMENT,
@@ -11,9 +9,9 @@ CREATE TABLE department(
 
 );
 
-CREATE DATABASE role_DB;
+-- CREATE DATABASE role_DB;
 
-USE role_DB;
+-- USE role_DB;
 
 CREATE TABLE role(
     id INT NOT NULL AUTO_INCREMENT,
@@ -25,9 +23,9 @@ CREATE TABLE role(
 
 );
 
-CREATE DATABASE employee_DB;
+-- CREATE DATABASE employee_DB;
 
-USE employee_DB;
+-- USE employee_DB;
 
 CREATE TABLE employee(
   id INT NOT NULL AUTO_INCREMENT,
