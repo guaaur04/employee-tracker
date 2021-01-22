@@ -9,6 +9,10 @@ CREATE TABLE department(
 
 );
 
+CREATE DATABASE role_db;
+
+USE role_db;
+
 CREATE TABLE role(
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
@@ -18,6 +22,10 @@ CREATE TABLE role(
     FOREIGN KEY (id) 
 
 );
+
+CREATE DATABASE employee_db;
+
+USE employee_db;
 
 CREATE TABLE employee(
   id INT NOT NULL AUTO_INCREMENT,

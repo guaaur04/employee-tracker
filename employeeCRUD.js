@@ -33,7 +33,7 @@ function start() {
     inquirer
         .prompt({
             name: "action",
-            type: "rawlist",
+            type: "list",
             message: "Would you like to [ADD] [VIEW] or [UPDATE] your database?",
             choices: ["ADD", "VIEW", "UPDATE", "EXIT"]
         })
@@ -53,8 +53,10 @@ function start() {
                 case "UPDATE":
                     updateEmployee();
                     break;
-            });
+            }
+        });
 }
+
 
 //Add employee 
 
@@ -77,7 +79,7 @@ function addEmployee() {
             function (err, res) {
                 if (err) throw err;
                 console.log("Inserting a new employee...\n");
-                console.log(res.affectedRows + " product inserted!\n");
+                console.log(res.affectedRows + " employee added!\n");
                 // Call update employee AFTER the INSERT completes
                 updateEmployee();
             }
@@ -90,8 +92,17 @@ function addEmployee() {
 };
 
 //Function to view departmnet, roles, employees
+function viewEmployee() {
+    inquirer
+        .prompt({
+            name: "action",
+            type: "list",
+            message: "Would you like to search by [DEPARTMENT] [ROLE] or [EMPLOYEE]?",
+            choices: ["DEPARTMENT", "ROLE", "EMPLOYEE", "EXIT"
+            ]
+        })
 
-
+        .then(function (answer) {
 
 //Function update employee
 
