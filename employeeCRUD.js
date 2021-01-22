@@ -1,6 +1,5 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
-const { start } = require("repl");
 const connection = mysql.createConnection({
 
     //Host
@@ -14,7 +13,7 @@ const connection = mysql.createConnection({
 
     //Password
     password: "password",
-    database: "employeesDB"
+    database: "department_db"
 
 });
 
@@ -27,71 +26,76 @@ connection.connect(function (err) {
 });
 
 
+
 // What would the user like to do?  
-//Add departments, roles, employees
-// View departments, roles, employees
-// Update employee roles
 
 function start() {
     inquirer
-      .prompt({
-        name: "",
-        type: "list",
-        message: "Would you like to [POST] an auction or [BID] on an auction?",
-        choices: ["POST", "BID", "EXIT"]
-      })
-      .then(function(answer) {
-        // based on their answer, either call the bid or the post functions
-        if (answer.postOrBid === "POST") {
-          postAuction();
-        }
-        else if(answer.postOrBid === "BID") {
-          bidAuction();
-        } else{
-          connection.end();
-        }
-      });
-  }
+        .prompt({
+            name: "action",
+            type: "rawlist",
+            message: "Would you like to [ADD] [VIEW] or [UPDATE] your database?",
+            choices: ["ADD", "VIEW", "UPDATE", "EXIT"]
+        })
 
+        .then(function (answer) {
+            // Based on user response, call the appropriate function...
+            switch (answer.action) {
+                case "ADD":
+                    addEmployee();
+                    break;
+
+                case "VIEW":
+                    viewEmployee();
+                    break;
+
+
+                case "UPDATE":
+                    updateEmployee();
+                    break;
+            });
+}
 
 //Add employee 
 
 function addEmployee() {
-    console.log("Inserting a new employee...\n");
     inquirer
-    .prompt([
-                "INSERT INTO employee SET ?",
-                {
-                    name: "first_name",
-                    type: "input",
-                    message: "Enter the employee's first name..."
-                },
+        .prompt([
+            {
+                name: "first_name",
+                type: "input",
+                message: "Enter the employee's first name..."
+            },
 
-                {
-                    name: "last_name",
-                    type: "input",
-                    message: "Enter the employee's last name..."
-                },
-
-
-                function (err, res) {
-                    if (err) throw err;
-                    console.log(res.affectedRows + " product inserted!\n");
-                    // Call update employee AFTER the INSERT completes
-                    updateEmployee();
-                }
-            ]);
+            {
+                name: "last_name",
+                type: "input",
+                message: "Enter the employee's last name..."
+            },
 
 
+            function (err, res) {
+                if (err) throw err;
+                console.log("Inserting a new employee...\n");
+                console.log(res.affectedRows + " product inserted!\n");
+                // Call update employee AFTER the INSERT completes
+                updateEmployee();
+            }
+
+        ]);
 
     //Log the query being run 
 
     console.log(query.sql);
-
+};
 
 //Function to view departmnet, roles, employees
 
-//Function update Employee
+
+
+//Function update employee
+
+
 
 //Call updateEmployee AFTER the INSERT completes
 
