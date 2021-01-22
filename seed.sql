@@ -1,37 +1,29 @@
-CREATE DATABASE department_db;
+CREATE DATABASE employee_db;
 
-USE department_db;
+USE employee_db;
 
 CREATE TABLE department(
     id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(30) NOT NULL,
+    name VARCHAR(30),
     PRIMARY KEY(id)
 
 );
 
-CREATE DATABASE role_db;
-
-USE role_db;
-
 CREATE TABLE role(
     id INT NOT NULL AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
-    salary decimal, 
+    salary decimal (15) NOT NULL, 
     department_id INT,
     PRIMARY KEY (id),
     FOREIGN KEY (id) 
 
 );
 
-CREATE DATABASE employee_db;
-
-USE employee_db;
-
 CREATE TABLE employee(
   id INT NOT NULL AUTO_INCREMENT,
-  first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  role_id INT default 0,
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
+  role_id INT(10),
   manager_id INT default 0,
   PRIMARY KEY (id),
   FOREIGN KEY (role_id)

@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
 
     //Password
     password: "password",
-    database: "department_db"
+    database: "employee_db"
 
 });
 
@@ -32,7 +32,7 @@ connection.connect(function (err) {
 function start() {
     inquirer
         .prompt({
-            name: "action",
+            name: "options",
             type: "list",
             message: "Would you like to [ADD] [VIEW] or [UPDATE] your database?",
             choices: ["ADD", "VIEW", "UPDATE", "EXIT"]
@@ -73,24 +73,28 @@ function addEmployee() {
                 name: "last_name",
                 type: "input",
                 message: "Enter the employee's last name..."
-            },
+        }
 
+    ])
 
+        .then(function (answer) {
+            console.log("Inserting a new employee...\n");
+            const query = connection.query
+            ("INSERT INTO employe SET ?" , {
+                first_name: answer.first_name,
+                last_name:answer.last_name,
+            })
+        },
             function (err, res) {
                 if (err) throw err;
-                console.log("Inserting a new employee...\n");
                 console.log(res.affectedRows + " employee added!\n");
 
                 // Call update employee AFTER the INSERT completes
                 updateEmployee();
             }
 
-        ]);
+        );
 
-    //Log the query being run 
-
-    console.log(query.sql);
-};
 
 //Function to view departmnet, roles, employees
 function viewEmployee() {
@@ -120,10 +124,6 @@ function viewEmployee() {
         }
         
         });
-
-        if (err) throw err;
-        console.table(res);
-
 }
 
 
@@ -139,7 +139,7 @@ function updateEmployee() {
         ])
 
         .then(function (answer) {
-            // when finished prompting, insert a new item into the db with that info
+            // When finished prompting, insert a new item into the DB with user update
             connection.query(
                 "INSERT INTO employee SET ?",
                 {
@@ -151,20 +151,14 @@ function updateEmployee() {
                 function (err) {
                     if (err) throw err;
                     console.log("Your update was created successfully!");
-                    
+
                     // Re-prompt and re-route to the startFunction
                     start();
                 }
             );
         });
 }
-
-//Call updateEmployee AFTER the INSERT completes
-
-
-
-
-
+}
 //Bonus points if you're able to:
 
 //Update employee managers

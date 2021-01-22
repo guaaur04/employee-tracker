@@ -11,12 +11,12 @@ Content management system wherein business can view and track department, roles,
 
 **Technologies** 
 
-node, Inquirer, MYSQL
+Node, Inquirer, MYSQL
 
 
 **Links**
 
-[![Github:](https://github.com/guaaur04/employee-tracker)]
+![Github:](https://github.com/guaaur04/employee-tracker)
 
 **Licence**
 
