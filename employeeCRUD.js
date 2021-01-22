@@ -80,6 +80,7 @@ function addEmployee() {
                 if (err) throw err;
                 console.log("Inserting a new employee...\n");
                 console.log(res.affectedRows + " employee added!\n");
+
                 // Call update employee AFTER the INSERT completes
                 updateEmployee();
             }
@@ -103,15 +104,61 @@ function viewEmployee() {
         })
 
         .then(function (answer) {
+            switch (answer.action) {
+            case "DEPARTMENT":
+            departmentSearch();
+            break;
+        
+              case "ROLE":
+            roleSearch();
+            break;
+        
+              case "EMPLOYEE":
+            employeeSearch();
+            break;
 
-//Function update employee
+        }
+        
+        });
+
+        if (err) throw err;
+        console.table(res);
+
+}
 
 
+//Function update employee role
+function updateEmployee() {
+    inquirer
+        .prompt([
+            {
+                name: "item",
+                type: "input",
+                message: "What would you like to update?"
+            },
+        ])
+
+        .then(function (answer) {
+            // when finished prompting, insert a new item into the db with that info
+            connection.query(
+                "INSERT INTO employee SET ?",
+                {
+                    first_name: answer.item,
+                    last_name:answer.item,
+                    role_id: answer.item,
+                    manager_id: answer.item
+                },
+                function (err) {
+                    if (err) throw err;
+                    console.log("Your update was created successfully!");
+                    // Re-prompt and re-route to the startFunction
+                    start();
+                }
+            );
+        });
+}
 
 //Call updateEmployee AFTER the INSERT completes
-
-
-
 
 
 
