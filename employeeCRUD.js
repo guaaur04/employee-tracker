@@ -151,6 +151,7 @@ function updateEmployee() {
                 function (err) {
                     if (err) throw err;
                     console.log("Your update was created successfully!");
+                    
                     // Re-prompt and re-route to the startFunction
                     start();
                 }

@@ -2,10 +2,12 @@
 
 **Description**
 
-Content management system
-Command line application 
+Content management system wherein business can view and track department, roles, and employees via this command line application 
+
+**Media**
 
 **Installation**
+
 
 **Technologies** 
 
@@ -13,6 +15,8 @@ node, Inquirer, MYSQL
 
 
 **Links**
+
+[![Github:](https://github.com/guaaur04/employee-tracker)]
 
 **Licence**
 
