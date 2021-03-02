@@ -1,6 +1,7 @@
 //  switch cases and functions within this file
 const inquirer = require("inquirer");
 const connection = require("./db/connection");
+require("console.table");
 
 // async function to load the main prompts needed
 const start = () => {
