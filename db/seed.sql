@@ -2,7 +2,6 @@ CREATE DATABASE employee_db;
 
 USE employee_db;
 
-
 CREATE TABLE department(
     id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
